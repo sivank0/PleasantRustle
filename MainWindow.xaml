@@ -1,0 +1,103 @@
+﻿<Window x:Class="PleasantRustle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PleasantRustle"
+        mc:Ignorable="d"
+        Title="Список агентов" Height="750" Width="550"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="60" MaxHeight="80"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="60" MaxHeight="100"/>
+        </Grid.RowDefinitions>
+        
+        <!--Поиск, сортировка и фильтрация-->
+        <TextBox x:Name="search"
+                 Grid.Row="0"
+                 VerticalAlignment="Center" HorizontalAlignment="Left"
+                 VerticalContentAlignment="Center"
+                 Margin="20" Padding="10,0,0,0"
+                 MinWidth="200" MaxWidth="250"
+                 MinHeight="30" MaxHeight="40"
+                 TextChanged="search_TextChanged"/>
+        <ComboBox x:Name="sort"
+                  Grid.Row="0"
+                  VerticalAlignment="Center" HorizontalAlignment="Right"
+                  Margin="0,0,170,0"
+                  MinWidth="120" MaxWidth="150"
+                  MinHeight="30" MaxHeight="50"
+                  SelectionChanged="sort_SelectionChanged"/>
+        <ComboBox x:Name="filter"
+                  Grid.Row="0"
+                  VerticalAlignment="Center" HorizontalAlignment="Right"
+                  Margin="0,0,30,0"
+                  MinWidth="120" MaxWidth="150"
+                  MinHeight="30" MaxHeight="50"
+                  SelectionChanged="filter_SelectionChanged"/>
+        
+        <!--Список агентов-->
+        <ListBox x:Name="agentsList"
+            Grid.Row="1"                
+                 Margin="10" MouseDoubleClick="agentsList_MouseDoubleClick" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition MinWidth="280" MaxWidth="300"/>
+                            <ColumnDefinition MinWidth="100" MaxWidth="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0"
+                           Source="{Binding Logo}"
+                           Width="70" Height="70"/>
+                        <TextBlock Text="{Binding TypeName}"
+                               Grid.Column="1"
+                               Margin="30,0,0,0"
+                               VerticalAlignment="Top"/>
+                        <TextBlock Text="{Binding NameCompany}"
+                               Grid.Column="1"
+                               Margin="70,0,0,0"
+                               VerticalAlignment="Top"/>
+                        <TextBlock Text="Продажи"
+                               Grid.Column="1"
+                               Margin="30,0,0,20"
+                               VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Phone}"
+                               Grid.Column="1"
+                               Margin="30,0,0,20"
+                               VerticalAlignment="Bottom"/>
+                        <TextBlock Text="{Binding Priority}"
+                               Grid.Column="1"
+                               Margin="30,0,0,0"
+                               VerticalAlignment="Bottom"/>
+                        <TextBlock Text="{Binding Discount}"
+                                Grid.Column="2"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox >
+        <Button x:Name="addAgent" Content="Добавить агента"
+                Grid.Row="2" 
+                VerticalAlignment="Center" HorizontalAlignment="Left"
+                Width="150" Height="50"
+                Margin="20,0,0,0"
+                Click="addAgent_Click"/>
+        <!--Переход между страницами-->
+        <Button x:Name="previousPage" Content="Предыдущая страница"
+                Grid.Row="2" 
+                VerticalAlignment="Center" HorizontalAlignment="Right"
+                Width="150" Height="50"
+                Margin="0,0,170,0"
+                Click="previousPage_Click"/>
+        <Button x:Name="nextPage" Content="Следующая страница"
+                Grid.Row="2" 
+                VerticalAlignment="Center" HorizontalAlignment="Right"
+                Width="150" Height="50"
+                Margin="0,0,10,0"
+                Click="nextPage_Click"/>
+    </Grid>
+</Window>
